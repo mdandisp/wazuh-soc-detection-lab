@@ -1,0 +1,16 @@
+<!--
+  Portfolio example based on the lab's initial custom rule.
+  Validate field matching against actual Wazuh-decoded events
+  before claiming successful detection.
+-->
+<group name="local,sysmon,">
+  <rule id="100100" level="5">
+    <field name="win.system.providerName">Microsoft-Windows-Sysmon</field>
+    <field name="win.system.eventID">^1$</field>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\powershell\.exe$</field>
+    <description>Sysmon: PowerShell process created on Windows endpoint</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+</group>
